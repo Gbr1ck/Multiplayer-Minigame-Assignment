@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9fef1d03642d7f24db233c24a21bebf3, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -29507,23 +29507,24 @@ Transform:
   - {fileID: 1619014513}
   - {fileID: 1132704907}
   - {fileID: 1429044702}
-  - {fileID: 1654717476}
-  - {fileID: 514016151}
-  - {fileID: 1738424706}
+  - {fileID: 1355097302}
+  - {fileID: 1237358058}
   - {fileID: 496253156}
   - {fileID: 1874049718}
   - {fileID: 716283921}
+  - {fileID: 1654717476}
   - {fileID: 1074318435}
   - {fileID: 1110488255}
+  - {fileID: 514016151}
   - {fileID: 2016101224}
   - {fileID: 1469466208}
   - {fileID: 288803156}
-  - {fileID: 1355097302}
   - {fileID: 1863891248}
   - {fileID: 1310353198}
   - {fileID: 2077969441}
   - {fileID: 1515692995}
   - {fileID: 782904633}
+  - {fileID: 1738424706}
   - {fileID: 53843217}
   - {fileID: 1702399460}
   - {fileID: 1133146491}
@@ -29532,7 +29533,6 @@ Transform:
   - {fileID: 187573483}
   - {fileID: 805197665}
   - {fileID: 2041982103}
-  - {fileID: 1237358058}
   - {fileID: 1771156118}
   - {fileID: 1850897813}
   - {fileID: 1281561699}
@@ -33130,12 +33130,12 @@ Transform:
   - {fileID: 975018510}
   - {fileID: 1176871386}
   - {fileID: 70300287}
-  - {fileID: 608456150}
-  - {fileID: 233330167}
   - {fileID: 464813506}
+  - {fileID: 16021685}
+  - {fileID: 233330167}
+  - {fileID: 608456150}
   - {fileID: 1007905182}
   - {fileID: 1515838411}
-  - {fileID: 16021685}
   - {fileID: 829390387}
   - {fileID: 365993095}
   - {fileID: 914946653}
@@ -46847,7 +46847,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.5647059, g: 0.7058824, b: 0.90196085, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
