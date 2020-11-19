@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7751391909981519657}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: Untagged
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +243,8 @@ MonoBehaviour:
   ms: 10
   jumpForce: 10
   sprintMulty: 2
+  PlayerUIPrefab: {fileID: 6143296276932113243, guid: c39cbb8901835ff4f869a8f4b4802dfb,
+    type: 3}
   cameraObj: {fileID: 7751391909981519656}
   playerCamera: {fileID: 7751391909981519654}
 --- !u!114 &7751391911280447936
