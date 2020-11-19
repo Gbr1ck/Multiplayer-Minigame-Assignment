@@ -1,19 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviourPunCallbacks {
     public float ms = 10;
     public float jumpForce = 10;
     public float sprintMulty = 1.5f;
     private bool grounded = false;
+    public GameObject PlayerUIPrefab;
     public GameObject cameraObj;
+    Camera mainCamera;
+    public Camera playerCamera;
     private Vector3 cameraDelta = new Vector3 ();
     Rigidbody rb;
 
-    void Start () => rb = this.GetComponent<Rigidbody> ();
+    void Start (){
+        rb = this.GetComponent<Rigidbody> ();
+        //setting up the cameras and checking to make sure the current camera is set to the correct player
+        mainCamera = Camera.main;
+        playerCamera.enabled = false;
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true){
+            return;
+        }else{
+            mainCamera.enabled = false;
+            playerCamera.enabled = true;
+        }
 
+        //setting up player UI
+        if (PlayerUIPrefab != null){
+            GameObject UIGameObject = Instantiate(PlayerUIPrefab);
+        }
+    }
     void Update () {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true){
+            return;
+        }
         if (Input.GetMouseButton (0) || Input.GetMouseButton (1) || Input.GetMouseButton (2)) Cursor.lockState = CursorLockMode.Locked;
         else if (Input.GetButtonDown ("Cancel")) Cursor.lockState = CursorLockMode.None;
 
