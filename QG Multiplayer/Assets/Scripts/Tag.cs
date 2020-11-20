@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Tag : MonoBehaviourPunCallbacks
+public class Tag : MonoBehaviourPun
 {
     public GameObject player;
     public Color taggedColor = Color.yellow;
     public Color defaultColor = Color.gray;
+
+    [PunRPC]
+    void TaggedColor(){
+        player.GetComponent<MeshRenderer>().material.color = taggedColor;
+    }
+    [PunRPC]
+    void DefaultColor(){
+        player.GetComponent<MeshRenderer>().material.color = defaultColor;
+    }
+
     void Start(){
         if (photonView.IsMine){
-            photonView.RPC("DefaultColor", RpcTarget.All);
+            this.photonView.RPC("DefaultColor", RpcTarget.All);
         }
     }
     
@@ -20,21 +30,13 @@ public class Tag : MonoBehaviourPunCallbacks
         }
         //getting tagged by another player
         else if (other.tag == "TaggedPlayer" && player.tag == "Player"){
-            photonView.RPC("TaggedColor", RpcTarget.All);
+            this.photonView.RPC("TaggedColor", RpcTarget.All);
             player.tag = "TaggedPlayer";
         }
         //tagging another player
         else if (other.tag == "Player" && player.tag == "TaggedPlayer"){
-            photonView.RPC("DefaultColor", RpcTarget.All);
+            this.photonView.RPC("DefaultColor", RpcTarget.All);
             player.tag = "Player";
         }
-    }
-    [PunRPC]
-    public void TaggedColor(){
-        player.GetComponent<MeshRenderer>().material.color = taggedColor;
-    }
-    [PunRPC]
-    public void DefaultColor(){
-        player.GetComponent<MeshRenderer>().material.color = defaultColor;
     }
 }
