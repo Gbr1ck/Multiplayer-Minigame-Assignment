@@ -6,24 +6,35 @@ using Photon.Pun;
 public class Tag : MonoBehaviourPunCallbacks
 {
     public GameObject player;
-    public Material taggedMaterial;
-    public Material defaultMaterial;
-    [SerializeField]
-    bool isTagged = false;
+    public Color taggedColor = Color.yellow;
+    public Color defaultColor = Color.gray;
+    void Start(){
+        if (photonView.IsMine){
+            photonView.RPC("DefaultColor", RpcTarget.All);
+        }
+    }
     
     void OnTriggerEnter(Collider other){
         if (photonView.IsMine == false){
             return;
         }
-        else if (other.tag == "Player"){
-            if (isTagged == true){
-                isTagged = false;
-                player.GetComponent<MeshRenderer>().material = defaultMaterial;
-            }
-            else if (isTagged == false){
-                isTagged = true;
-                player.GetComponent<MeshRenderer>().material = taggedMaterial;
-            }
+        //getting tagged by another player
+        else if (other.tag == "TaggedPlayer" && player.tag == "Player"){
+            photonView.RPC("TaggedColor", RpcTarget.All);
+            player.tag = "TaggedPlayer";
         }
+        //tagging another player
+        else if (other.tag == "Player" && player.tag == "TaggedPlayer"){
+            photonView.RPC("DefaultColor", RpcTarget.All);
+            player.tag = "Player";
+        }
+    }
+    [PunRPC]
+    public void TaggedColor(){
+        player.GetComponent<MeshRenderer>().material.color = taggedColor;
+    }
+    [PunRPC]
+    public void DefaultColor(){
+        player.GetComponent<MeshRenderer>().material.color = defaultColor;
     }
 }
