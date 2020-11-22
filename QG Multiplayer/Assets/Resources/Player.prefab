@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7751391911280447944}
-  taggedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  defaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  taggedMaterial: {fileID: 2100000, guid: 2af255fee09fd7445a203832eb3e3061, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: fc85ab8954349b0439e6888c303f1b3b, type: 2}
 --- !u!114 &8881224834358045765
 MonoBehaviour:
   m_ObjectHideFlags: 0

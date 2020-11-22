@@ -28615,7 +28615,6 @@ MonoBehaviour:
   playerPrefab: {fileID: 7751391911280447944, guid: 03f5aa0ba73befd42a1f0a0f60868009,
     type: 3}
   timer: {fileID: 596396571}
-  roundTime: 0
 --- !u!4 &555950166
 Transform:
   m_ObjectHideFlags: 0
