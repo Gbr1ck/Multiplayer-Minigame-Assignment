@@ -7,12 +7,13 @@ public class Player : MonoBehaviourPunCallbacks {
     public float ms = 10;
     public float jumpForce = 10;
     public float sprintMulty = 1.5f;
-    private bool grounded = false;
+    bool grounded = false;
     public GameObject PlayerUIPrefab;
     public GameObject cameraObj;
     Camera mainCamera;
     public Camera playerCamera;
-    private Vector3 cameraDelta = new Vector3 ();
+    Vector3 cameraDelta = new Vector3 ();
+    public TextMesh name;
     Rigidbody rb;
 
     void Start (){
@@ -20,6 +21,7 @@ public class Player : MonoBehaviourPunCallbacks {
         //setting up the cameras and checking to make sure the current camera is set to the correct player
         mainCamera = Camera.main;
         playerCamera.enabled = false;
+        name.text = this.photonView.Owner.NickName;
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true){
             return;
         }else{
@@ -32,8 +34,14 @@ public class Player : MonoBehaviourPunCallbacks {
             GameObject UIGameObject = Instantiate(PlayerUIPrefab);
         }
     }
+
+    public void CameraLookat (Transform _Camera) {
+        name.transform.LookAt (_Camera, new Vector3 (0, -1, 0));
+    }
+
     void Update () {
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true){
+            name.gameObject.transform.rotation = new Quaternion ();
             return;
         }
         if (Input.GetMouseButton (0) || Input.GetMouseButton (1) || Input.GetMouseButton (2)) Cursor.lockState = CursorLockMode.Locked;
@@ -57,5 +65,17 @@ public class Player : MonoBehaviourPunCallbacks {
             // camera controls
             cameraObj.transform.rotation = Quaternion.Euler (cameraDelta);
         } else cameraObj.transform.rotation = Quaternion.Euler (cameraDelta);
+    }
+
+    void LateUpdate () {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) return;
+
+        // name rotations
+        foreach (Player p in FindObjectsOfType<Player> ())
+            if (p != this) p.CameraLookat (playerCamera.transform);
+    }
+
+    void Dash () {
+
     }
 }
