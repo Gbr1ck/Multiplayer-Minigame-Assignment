@@ -30,8 +30,11 @@ public class Tag : MonoBehaviourPun
     }
     
     void OnTriggerEnter(Collider other){
+        if (photonView.IsMine == false){
+            return;
+        }
         //getting tagged by another player
-        if (other.tag == "TaggedPlayer" && player.tag == "Player"){
+        else if (other.tag == "TaggedPlayer" && player.tag == "Player"){
             this.photonView.RPC("TaggedColor", RpcTarget.All);
             Debug.Log("I've been tagged");
         }
